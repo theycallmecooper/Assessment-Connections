@@ -1,4 +1,4 @@
-#CONNECTIONS ASSESSMENT
+#CONNECTIONS ASSESSMENT .
 
 def print_words_from_catagories(word_categories):
     for category in word_categories:
