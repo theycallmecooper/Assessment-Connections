@@ -1,6 +1,8 @@
 #CONNECTIONS ASSESSMENT
 
 import random
+from colorama import init, Fore, Back, Style
+
 max_guesses = 4
 def print_words_from_catagories(word_categories):
     for category in word_categories:
@@ -12,12 +14,12 @@ def setup_word_categories(): #holds the categories
     word_categories = [] #the following are the categories that will be in use
 
     country_homonyms = {
-        "Linking_word" : "Country/Place Homonyms",
+        "Linking_word" : "Country Homonyms",
         "words" : ["Grease", "Hungry", "Whales", "Turkey"] #0
     }
 
     water = {
-        "Linking_word" : "Water Synonyms",
+        "Linking_word" : "Water",
         "words" : ["Water", "H2O", "Aqua", "Adam's Ale"] #1
     }
 
@@ -47,12 +49,12 @@ def setup_word_categories(): #holds the categories
     }
 
     paleozoic = {
-        "Linking_word" : "Periods in the Paleozoic Era",
+        "Linking_word" : "Paleozoic",
         "words" : ["Permian", "Ordocician", "Devonian", "Cambrian"] #7
     }
 
     tertiary = {
-        "Linking_word" : "Epochs in the Tertiary Period",
+        "Linking_word" : "Tertiary",
         "words" : ["Eocene", "Oligocene", "Miocene", "Pliocene"] #8
     }
 
@@ -118,30 +120,40 @@ def display_game(word_categories, grid_size):
     return selected_categories
 
 def guess_linking_word(selected_categories):
-    guesses = 0  # Initialize the number of guesses
-    max_guesses = 4  # Maximum number of guesses
+    max_guesses = 4  #max guesses
+    correct_guesses = 0  # Initialise the number of correct guesses
+    guesses = 0  #the initial number of guesses
 
     while guesses < max_guesses:
-        guess = input("Guess the linking word for a category: ")
+        guess = input(Fore.YELLOW + "Guess the linking word for a category: ")
 
         for category in selected_categories:
             if guess.lower() == category['Linking_word'].lower(): #For a correct guess
-                print("Correct! You connected!")
-                return True
+                print(Fore.GREEN + "Correct! You connected!")
+                correct_guesses += 1
 
-        print("Incorrect. Try again.") #For incorrect guesses
-        guesses += 1
-        remaining_guesses = max_guesses - guesses
-        print(f"You have {remaining_guesses} guesses remaining.")
+                # Check if the player has guessed all categories correctly
+                if correct_guesses == len(selected_categories):
+                    print(Fore.GREEN + "Congratulations! You guessed all linking words correctly. YOU WIN!")
+                    return True
+                else:
+                    print(f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
+                break # Exit the loop once a correct guess is made
+        
+        if correct_guesses < len(selected_categories):
+            if guess.lower() != category['Linking_word'].lower():
+                print(Fore.RED + "Incorrect. Try again.")  # For incorrect guesses
+                guesses += 1
+                remaining_guesses = max_guesses - guesses
+                print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
 
-    print("You ran out of guesses. YOU LOSE! ---- The correct linking words were:")
+    print(Fore.RED + "You ran out of guesses. YOU LOSE! ---- The correct linking words were:")
     for category in selected_categories:
         print(f"{category['Linking_word']} - {', '.join(category['words'])}")
+        
+        return False
 
-    return False
+selected_categories = display_game(word_categories, 4)# Allow the player to make a guess
 
-selected_categories = display_game(word_categories, 4)
-
-# Allow the player to make a guess
 guess_linking_word(selected_categories)
 #print_words_from_catagories(word_categories)      #prints words from each category in a list
