@@ -39,12 +39,12 @@ def setup_word_categories(): #holds the categories
     }
 
     bbl_teams = {
-        "Linking_word" : "BBL Teams",
+        "Linking_word" : "BBL",
         "words" : ["Renegade", "Striker", "Thunder", "Hurricane"] #5
     }
 
     nrl_teams = {
-        "Linking_word" : "NRL Teams",
+        "Linking_word" : "NRL",
         "words" : ["Knight", "Cowboy", "Panther", "Bulldog"] #6
     }
 
@@ -63,6 +63,21 @@ def setup_word_categories(): #holds the categories
         "words" : ["Wheat", "Barley", "Oat", "Rice"] #9
     }
 
+    sea = {
+        "Linking_word" : "Sea",
+        "words" : ["Lion", "Serpent", "Eagle", "Urchin"] #10
+    }
+
+    green = {
+        "Linking_word" : "Green",
+        "words" : ["Grocer", "Machine", "House", "Screen"] #11
+    }
+
+    peninsula = {
+        "Linking_word" : "Peninsula",
+        "words" : ["Arabian", "Balkan", "Iberian", "Italian"] #12
+    }
+
     word_categories.append(country_homonyms)
     word_categories.append(water)
     word_categories.append(smelly)
@@ -73,6 +88,9 @@ def setup_word_categories(): #holds the categories
     word_categories.append(paleozoic)
     word_categories.append(tertiary)
     word_categories.append(grains)
+    word_categories.append(sea)
+    word_categories.append(green)
+    word_categories.append(peninsula)
 
     return word_categories
 
@@ -88,6 +106,9 @@ def create_grid():
 
     return word_grid
 
+def shuffle_categories(selected_categories):
+    random.shuffle(selected_categories)
+
 #word_grid = create_grid()
 word_categories = setup_word_categories()
 
@@ -101,21 +122,21 @@ def display_game(word_categories, grid_size):
     selected_categories = random.sample(word_categories, 4)
 
     # First row
-    print(f" ", end=' ') #These lines relate to 1, 2, 3 & 4
+    print(Fore.WHITE + f" ", end=' ') #These lines relate to 1, 2, 3 & 4
     for j in range(grid_size):
-        print(f"|  {j+1} ", end='') #this makes the lines between the slots
-    print("|") #this makes the final line between the slots
-    print((grid_size*4 + 21)*"-") #this makes the dotted line thing that makes it look neat
+        print(Fore.WHITE + f"|  {j+1} ", end='') #this makes the lines between the slots
+    print(Fore.WHITE + "|") #this makes the final line between the slots
+    print(Fore.WHITE + (grid_size*4 + 21)*"-") #this makes the dotted line thing that makes it look neat
 
     # Other rows
     for i in range(grid_size): #These lines relate to rows A - D
-        print(f"{chr(c+i)} ", end='')
+        print(Fore.WHITE + f"{chr(c+i)} ", end='')
         for j in range(grid_size):
             # Access the shuffled words within each category
             word = selected_categories[i]['words'][j]
-            print(f"| {word} ", end='') #this makes the lines between the slots
-        print("|") #this makes the final line between the slots
-        print((grid_size*4 + 21)*"-") #this makes the dotted line thing that makes it look neat
+            print(Fore.WHITE + f"| {word} ", end='') #this makes the lines between the slots
+        print(Fore.WHITE + "|") #this makes the final line between the slots
+        print(Fore.WHITE + (grid_size*4 + 21)*"-") #this makes the dotted line thing that makes it look neat
 
     return selected_categories
 
@@ -142,8 +163,12 @@ def guess_linking_word(selected_categories):
         
         if correct_guesses < len(selected_categories):
             if guess.lower() != category['Linking_word'].lower():
-                print(Fore.RED + "Incorrect. Try again.")  # For incorrect guesses
-                guesses += 1
+                print(Fore.RED + "Incorrect. Do you want to shuffle the categories? (yes/no)")
+                response = input().lower()
+                if response == 'yes':
+                    shuffle_categories(selected_categories)
+                    display_game(selected_categories, len(selected_categories))  # For incorrect guesses
+                guesses += 1          
                 remaining_guesses = max_guesses - guesses
                 print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
 
@@ -152,6 +177,9 @@ def guess_linking_word(selected_categories):
         print(f"{category['Linking_word']} - {', '.join(category['words'])}")
         
         return False
+    
+word_categories = setup_word_categories()
+selected_categories = random.sample(word_categories, 4)
 
 selected_categories = display_game(word_categories, 4)# Allow the player to make a guess
 
