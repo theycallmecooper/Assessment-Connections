@@ -1,99 +1,35 @@
-#CONNECTIONS ASSESSMENT
+# CONNECTIONS ASSESSMENT #
 
+## IMPORTED LIBRARIES ##
 import random
 from colorama import init, Fore, Back, Style
+from time import sleep
+from easy_dictionary1 import easy_word_categories
+from hard_dictionary1 import hard_word_categories
+from fong_dictionary1 import fong_word_categories
 
-max_guesses = 4
+## FORMATTING STUFF ##
+
+# typewriter effect
+def typewriter(words):
+        for char in words:
+            print(char, end='', flush=True) #Typewriter effect
+            sleep(0.058)
+        print()
+
+# add gap between cells
+def gap():
+        print(
+        ""
+        )
+
+# print function that can print each word from a category(s)
 def print_words_from_catagories(word_categories):
     for category in word_categories:
         print(category["Linking_word"])
         print(category["words"])
 
-def setup_word_categories(): #holds the categories
-    word_categories = [] #the following are the categories that will be in use
-
-    country_homonyms = {
-        "Linking_word" : "Country Homonyms",
-        "words" : ["Grease", "Hungry", "Whales", "Turkey"] #0
-    }
-
-    water = {
-        "Linking_word" : "Water",
-        "words" : ["Water", "H2O", "Aqua", "Adam's Ale"] #1
-    }
-
-    smelly = {
-        "Linking_word" : "Smelly",
-        "words" : ["Reek", "Stench", "Pongy", "Stink"] #2
-    }
-
-    hand_digits = {
-        "Linking_word" : "Hand Digits",
-        "words" : ["Index", "Middle", "Thumb", "Pinky"] #3
-    }
-
-    alcohols = {
-        "Linking_word" : "Alcohols",
-        "words" : ["Vodka", "Beer", "Rum", "Champagne"] #4
-    }
-
-    bbl_teams = {
-        "Linking_word" : "BBL",
-        "words" : ["Renegade", "Striker", "Thunder", "Hurricane"] #5
-    }
-
-    nrl_teams = {
-        "Linking_word" : "NRL",
-        "words" : ["Knight", "Cowboy", "Panther", "Bulldog"] #6
-    }
-
-    paleozoic = {
-        "Linking_word" : "Paleozoic",
-        "words" : ["Permian", "Ordocician", "Devonian", "Cambrian"] #7
-    }
-
-    tertiary = {
-        "Linking_word" : "Tertiary",
-        "words" : ["Eocene", "Oligocene", "Miocene", "Pliocene"] #8
-    }
-
-    grains = {
-        "Linking_word" : "Grains",
-        "words" : ["Wheat", "Barley", "Oat", "Rice"] #9
-    }
-
-    sea = {
-        "Linking_word" : "Sea",
-        "words" : ["Lion", "Serpent", "Eagle", "Urchin"] #10
-    }
-
-    green = {
-        "Linking_word" : "Green",
-        "words" : ["Grocer", "Machine", "House", "Screen"] #11
-    }
-
-    peninsula = {
-        "Linking_word" : "Peninsula",
-        "words" : ["Arabian", "Balkan", "Iberian", "Italian"] #12
-    }
-
-    #Appending
-    word_categories.append(country_homonyms)
-    word_categories.append(water)
-    word_categories.append(smelly)
-    word_categories.append(hand_digits)
-    word_categories.append(alcohols)
-    word_categories.append(bbl_teams)
-    word_categories.append(nrl_teams)
-    word_categories.append(paleozoic)
-    word_categories.append(tertiary)
-    word_categories.append(grains)
-    word_categories.append(sea)
-    word_categories.append(green)
-    word_categories.append(peninsula)
-
-    return word_categories
-
+# creates a grid
 def create_grid():
     grid_size = 4
     word_grid = []
@@ -106,47 +42,49 @@ def create_grid():
 
     return word_grid
 
-#Shuffles category words
+# shuffles category words
 def shuffle_categories(selected_categories):
     random.shuffle(selected_categories)
 
-# Main part of the code begins here.
-#word_grid = create_grid()
-word_categories = setup_word_categories()
-
-# Function to display the game grid.
+#Displays the grid and the words on said grid
 def display_game(word_categories, grid_size):
-    c = 65 # ASCII value for 'A'.
+    c = 65  # ASCII value for 'A'.
 
     # Shuffle the words within each category
     for category in word_categories:
         random.shuffle(category["words"])
 
-     # Randomly select 4 categories for the game.
+    # Randomly select 4 categories for the game.
     selected_categories = random.sample(word_categories, 4)
 
-    # First row
-    print(Fore.WHITE + f" ", end=' ') #These lines relate to 1, 2, 3 & 4
+    # Calculate the maximum word length
+    max_word_length = max(len(word) for category in selected_categories for word in category["words"])
+    cell_width = max_word_length + 3  # Adding 3 for extra spacing
+
+    # First row (column numbers)
+    print(Fore.WHITE + f"{' ':<{cell_width}}", end=' ')
     for j in range(grid_size):
-        print(Fore.WHITE + f"|  {j+1} ", end='') #this makes the lines between the slots
-    print(Fore.WHITE + "|") #this makes the final line between the slots
-    print(Fore.WHITE + (grid_size*4 + 21)*"-") #this makes the dotted line thing that makes it look neat
+        print(Fore.WHITE + f"| {j+1:{cell_width-2}} ", end='') #Divider
+    print(Fore.WHITE + "|") #Divider
+    print(Fore.WHITE + "-" * (grid_size * (cell_width + 2) + 16)) #Dotted horizontal lines
 
     # Other rows
-    for i in range(grid_size): #These lines relate to rows A - D
-        print(Fore.WHITE + f"{chr(c+i)} ", end='')
+    for i in range(grid_size):
+        print(Fore.WHITE + f"{chr(c+i):<{cell_width}}", end='')
         for j in range(grid_size):
             # Access the shuffled words within each category
-            word = selected_categories[i]['words'][j]
-            print(Fore.WHITE + f"| {word} ", end='') #this makes the lines between the slots
-        print(Fore.WHITE + "|") #this makes the final line between the slots
-        print(Fore.WHITE + (grid_size*4 + 21)*"-") #this makes the dotted line thing that makes it look neat
+            if j < len(selected_categories[i]['words']):
+                word = selected_categories[i]['words'][j]
+                print(Fore.WHITE + f"| {word:<{cell_width}} ", end='') #Divider
+            else:
+                print(Fore.WHITE + f"| {'':<{cell_width}} ", end='') #Divider
+        print(Fore.WHITE + "|") #Divider
+        print(Fore.WHITE + "-" * (grid_size * (cell_width + 2) + 16)) #Dotted horizontal lines
 
     return selected_categories
 
 # Function to let the player guess the linking words.
-def guess_linking_word(selected_categories):
-    max_guesses = 4  # max guesses
+def guess_linking_word(selected_categories, max_guesses):
     correct_guesses = 0  # Initialise the number of correct guesses
     guesses = 0  # the initial number of guesses
 
@@ -157,38 +95,99 @@ def guess_linking_word(selected_categories):
         for category in selected_categories:
             if set(guess_words) <= set(category['words']):  # Check if guessed words are a subset of category words
                 found_category = True
-                guess = input(Fore.GREEN + f"Guess the linking word for the category {category['Linking_word']}: ")
-                if guess.lower() == category['Linking_word'].lower():
-                    print(Fore.GREEN + "Correct! You connected!")
-                    correct_guesses += 1
-                    if correct_guesses == len(selected_categories):
-                        print(Fore.GREEN + "Congratulations! You guessed all linking words correctly. YOU WIN!")
-                        return True
-                    else:
-                        print(f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
-                    break
-                else:
-                    print(Fore.RED + "Incorrect guess!")
-                    guesses += 1
-                    remaining_guesses = max_guesses - guesses
-                    print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
-                    break
+                typewriter(Fore.GREEN + f"The link for the category is: {category['Linking_word']}")
+                correct_guesses += 1
+                print(Fore.BLUE + f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
 
         if not found_category:
-            print(Fore.RED + "Words entered don't belong to any category!")
+            print(Fore.RED + "INCORRECT GUESS!!!")
             guesses += 1
+            remaining_guesses = max_guesses - guesses
+            print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
+            player_shuffle = input(Fore.BLUE + "You you want to shuffle? (y/n)")
+            if player_shuffle == 'y':
+                shuffle_categories(selected_categories)
+                display_game(selected_categories, 4)
 
-    print(Fore.RED + "You ran out of guesses. YOU LOSE! ---- The correct linking words were:")
-    for category in selected_categories:
-        print(f"{category['Linking_word']} - {', '.join(category['words'])}")
+        if correct_guesses == len(selected_categories):
+            print(Fore.GREEN + Style.BRIGHT + "Congratulations! You guessed all linking words correctly. YOU WIN!")
+            if guesses == max_guesses - 1:
+                typewriter(Fore.MAGENTA + Style.BRIGHT +"Pheww... That was close!")
+            return True
+    
+    if guesses == max_guesses:
+        print(Fore.RED + "You ran out of guesses. YOU LOSE! ---- The correct linking words were:")
+        for category in selected_categories:
+            print(f"{category['Linking_word']} - {', '.join(category['words'])}")
 
     return False
 
-# Set up word categories and select 4 random categories for the game.
-word_categories = setup_word_categories()
+## GAME LAUNCH ##
+
+easy_mode = easy_word_categories()  #Easy mode: Easier categories, otherwise classic connections gameplay, 4 guesses
+hard_mode = hard_word_categories()  #Hard mode: Harder categories, otherwise classic connections gameplay, 3 guesses
+fong_mode = fong_word_categories()  #Extreme mode: Harder categories, no shuffling, have to guess the connection in order to get it right, 3 guesses
+                                    #Fong mode: Connections closer related to the life of Andraa
+word_categories = ""
+
+typewriter(Style.BRIGHT + Fore.GREEN + "WELCOME " + Style.BRIGHT + Fore.MAGENTA + "TO " + Style.BRIGHT + Fore.YELLOW + "CONNECTIONS")
+print("        \U0001F642")
+gameMode = input(Style.RESET_ALL + "Select game mode| EASY | HARD | EXTREME |:")
+if gameMode == "HARD" or gameMode == "EXTREME":
+    word_categories = hard_mode
+    max_guesses = 3
+    if gameMode == "EXTREME":
+        choice = input("Do you want hard categories or fong categories? | Hard | Fong |")
+        if choice == "Fong":
+            word_categories = fong_mode
+        def guess_linking_word(selected_categories, max_guesses):
+            correct_guesses = 0  # nitialize the number of correct guesses
+            guesses = 0  # Initialize the number of guesses
+            while guesses < max_guesses:
+                guess_words = input(Fore.YELLOW + "Guess 4 connected words from any category separated by commas: ").split(',')
+
+                found_category = False
+                for category in selected_categories:
+                    if set(guess_words) <= set(category['words']):  # Check if guessed words are a subset of category words
+                        found_category = True
+                        typewriter(Fore.GREEN + f"Guess the link for the category: {', '.join(category['words'])}")
+                        guess = input(Fore.GREEN + "Your guess: ")
+                        if guess.lower() == category['Linking_word'].lower():
+                            print(Fore.GREEN + "Correct! You connected!")
+                            correct_guesses += 1
+                            if correct_guesses == len(selected_categories):
+                                print(Fore.GREEN + "Congratulations! You guessed all linking words correctly. YOU WIN!")
+                                if guesses == max_guesses - 1:
+                                    typewriter(Fore.MAGENTA + Style.BRIGHT +"Pheww... That was close!")
+                                return True
+                            else:
+                                print(Fore.BLUE + f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
+                            break
+                        else:
+                            print(Fore.RED + "Incorrect guess!")
+                            guesses += 1
+                            remaining_guesses = max_guesses - guesses
+                            print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
+
+                if not found_category:
+                    print(Fore.RED + "INCORRECT GUESS!!!")
+                    guesses += 1
+                    remaining_guesses = max_guesses - guesses
+                    print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
+
+            if guesses == max_guesses:
+                print(Fore.RED + "You ran out of guesses. YOU LOSE! ---- The correct linking words were:")
+                for category in selected_categories:
+                    print(f"{category['Linking_word']} - {', '.join(category['words'])}")
+else:
+    word_categories = easy_mode
+    max_guesses = 4
+
+# select four from the chosen game category
 selected_categories = random.sample(word_categories, 4)
 
 # Display the game grid and let the player guess the linking words.
 selected_categories = display_game(word_categories, 4)
-guess_linking_word(selected_categories)
-#print_words_from_catagories(word_categories)      #prints words from each category in a list
+
+# Get a player guess
+guess_linking_word(selected_categories, max_guesses)
