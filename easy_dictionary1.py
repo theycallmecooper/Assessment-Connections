@@ -5,37 +5,37 @@ def easy_word_categories(): #holds the categories
 
     country_homonyms = {
         "Linking_word" : "Country Homonyms",
-        "words" : ["Grease", "Hungry", "Whales", "Turkey"] #1
+        "words" : ["grease", "hungry", "whales", "turkey"] #1
     }
 
     smelly = {
         "Linking_word" : "Smelly",
-        "words" : ["Reek", "Stench", "Pong", "Stink"] #2
+        "words" : ["reek", "stench", "pong", "stink"]
     }
 
     alcohols = {
         "Linking_word" : "Alcohols",
-        "words" : ["Vodka", "Beer", "Rum", "Champagne"] #4
+        "words" : ["vodka", "beer", "rum", "champagne"]
     }
 
     nrl_teams = {
         "Linking_word" : "NRL",
-        "words" : ["Knight", "Cowboy", "Panther", "Bulldog"] #6
+        "words" : ["knight", "cowboy", "panther", "bulldog"]
     }
 
     grains = {
         "Linking_word" : "Grains",
-        "words" : ["Wheat", "Barley", "Oat", "Rice"] #9
+        "words" : ["wheat", "barley", "oat", "rice"]
     }
 
     sea = {
         "Linking_word" : "Sea",
-        "words" : ["Lion", "Serpent", "Eagle", "Urchin"] #10
+        "words" : ["lion", "serpent", "eagle", "urchin"] 
     }
 
     green = {
         "Linking_word" : "Green",
-        "words" : ["Grocer", "Machine", "House", "Screen"] #11
+        "words" : ["grocer", "machine", "house", "screen"]
     }
 
     #Appending

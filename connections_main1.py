@@ -2,6 +2,7 @@
 
 ## IMPORTED LIBRARIES ##
 import random
+from random import shuffle
 from colorama import init, Fore, Back, Style
 from time import sleep
 from easy_dictionary1 import easy_word_categories
@@ -19,7 +20,7 @@ def typewriter(words):
 
 # add gap between cells
 def gap():
-        print(
+        print(  
         ""
         )
 
@@ -61,25 +62,15 @@ def display_game(word_categories, grid_size):
     max_word_length = max(len(word) for category in selected_categories for word in category["words"])
     cell_width = max_word_length + 3  # Adding 3 for extra spacing
 
-    # First row (column numbers)
-    print(Fore.WHITE + f"{' ':<{cell_width}}", end=' ')
-    for j in range(grid_size):
-        print(Fore.WHITE + f"| {j+1:{cell_width-2}} ", end='') #Divider
-    print(Fore.WHITE + "|") #Divider
-    print(Fore.WHITE + "-" * (grid_size * (cell_width + 2) + 16)) #Dotted horizontal lines
+    #Display top line
+    print("=" * (grid_size * (cell_width + 2) + 5)) 
 
-    # Other rows
-    for i in range(grid_size):
-        print(Fore.WHITE + f"{chr(c+i):<{cell_width}}", end='')
-        for j in range(grid_size):
-            # Access the shuffled words within each category
-            if j < len(selected_categories[i]['words']):
-                word = selected_categories[i]['words'][j]
-                print(Fore.WHITE + f"| {word:<{cell_width}} ", end='') #Divider
-            else:
-                print(Fore.WHITE + f"| {'':<{cell_width}} ", end='') #Divider
-        print(Fore.WHITE + "|") #Divider
-        print(Fore.WHITE + "-" * (grid_size * (cell_width + 2) + 16)) #Dotted horizontal lines
+    # Display rows
+    for i, category in enumerate(selected_categories):
+        for word in category['words']:
+            print(f"| {word:<{cell_width}} ", end='')
+        print("|")
+        print("=" * (grid_size * (cell_width + 2) + 5)) #Makes the line below the categories longer/shorter 
 
     return selected_categories
 
@@ -89,7 +80,7 @@ def guess_linking_word(selected_categories, max_guesses):
     guesses = 0  # the initial number of guesses
 
     while guesses < max_guesses:
-        guess_words = input(Fore.YELLOW + "Guess 4 connected words from any category separated by commas: ").split(',')
+        guess_words = input(Fore.YELLOW + "Guess 4 connected words from any category separated by commas: ").lower().split(',')
 
         found_category = False
         for category in selected_categories:
@@ -104,9 +95,9 @@ def guess_linking_word(selected_categories, max_guesses):
             guesses += 1
             remaining_guesses = max_guesses - guesses
             print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
-            player_shuffle = input(Fore.BLUE + "You you want to shuffle? (y/n)")
+            player_shuffle = input(Fore.BLUE + "You you want to shuffle? (y/n)").lower()
             if player_shuffle == 'y':
-                shuffle_categories(selected_categories)
+                shuffle_categories(word_categories, 4)
                 display_game(selected_categories, 4)
 
         if correct_guesses == len(selected_categories):
@@ -132,26 +123,31 @@ word_categories = ""
 
 typewriter(Style.BRIGHT + Fore.GREEN + "WELCOME " + Style.BRIGHT + Fore.MAGENTA + "TO " + Style.BRIGHT + Fore.YELLOW + "CONNECTIONS")
 print("        \U0001F642")
-gameMode = input(Style.RESET_ALL + "Select game mode| EASY | HARD | EXTREME |:")
-if gameMode == "HARD" or gameMode == "EXTREME":
+gameMode = input(Style.RESET_ALL + "Select game mode| EASY | HARD | EXTREME |:").lower()
+if gameMode == "hard" or gameMode == "extreme":
     word_categories = hard_mode
     max_guesses = 3
-    if gameMode == "EXTREME":
-        choice = input("Do you want hard categories or fong categories? | Hard | Fong |")
-        if choice == "Fong":
+    if gameMode == "extreme":
+        choice = input("Do you want hard categories or fong categories? | Hard | Fong |").lower()
+        if choice == "fong":
             word_categories = fong_mode
+    if gameMode == "hard":
+        choice = input("Do you want hard categories or fong categories? | Hard | Fong |").lower()
+        if choice == "fong":
+            word_categories = fong_mode
+       
         def guess_linking_word(selected_categories, max_guesses):
             correct_guesses = 0  # nitialize the number of correct guesses
             guesses = 0  # Initialize the number of guesses
             while guesses < max_guesses:
-                guess_words = input(Fore.YELLOW + "Guess 4 connected words from any category separated by commas: ").split(',')
+                guess_words = input(Fore.YELLOW + "Guess 4 connected words from any category separated by commas: ").lower().split(',')
 
                 found_category = False
                 for category in selected_categories:
                     if set(guess_words) <= set(category['words']):  # Check if guessed words are a subset of category words
                         found_category = True
                         typewriter(Fore.GREEN + f"Guess the link for the category: {', '.join(category['words'])}")
-                        guess = input(Fore.GREEN + "Your guess: ")
+                        guess = input(Fore.GREEN + "Your guess: ").lower()
                         if guess.lower() == category['Linking_word'].lower():
                             print(Fore.GREEN + "Correct! You connected!")
                             correct_guesses += 1
@@ -182,6 +178,9 @@ if gameMode == "HARD" or gameMode == "EXTREME":
 else:
     word_categories = easy_mode
     max_guesses = 4
+    choice = input("Do you want easy categories or fong categories? | Easy | Fong |").lower()
+    if choice == "fong":
+        word_categories = fong_mode
 
 # select four from the chosen game category
 selected_categories = random.sample(word_categories, 4)

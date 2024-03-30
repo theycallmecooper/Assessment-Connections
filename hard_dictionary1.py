@@ -5,32 +5,32 @@ def hard_word_categories(): #holds the categories
 
     water = {
         "Linking_word" : "Water",
-        "words" : ["Water", "H2O", "Aqua", "Adam's Ale"] #1
+        "words" : ["water", "h2o", "aqua", "adams ale"] 
     }
 
     hand_digits = {
         "Linking_word" : "Hand Digits",
-        "words" : ["Index", "Middle", "Thumb", "Pinky"] #3
+        "words" : ["index", "middle", "thumb", "pinky"] 
     }
 
     bbl_teams = {
         "Linking_word" : "BBL",
-        "words" : ["Renegade", "Striker", "Thunder", "Hurricane"] #5
+        "words" : ["renegade", "striker", "thunder", "hurricane"]
     }
 
     paleozoic = {
         "Linking_word" : "Paleozoic",
-        "words" : ["Permian", "Ordocician", "Devonian", "Cambrian"] #7
+        "words" : ["permian", "ordocician", "devonian", "cambrian"]
     }
 
     tertiary = {
         "Linking_word" : "Tertiary",
-        "words" : ["Eocene", "Oligocene", "Miocene", "Pliocene"] #8
+        "words" : ["eocene", "oligocene", "miocene", "pliocene"]
     }
 
     peninsula = {
         "Linking_word" : "Peninsula",
-        "words" : ["Arabian", "Balkan", "Iberian", "Italian"] #12
+        "words" : ["arabian", "balkan", "iberian", "italian"]
     }
 
     #Appending

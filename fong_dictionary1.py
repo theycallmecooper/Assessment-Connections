@@ -5,32 +5,47 @@ def fong_word_categories():
 
     premier_league = {
         "Linking_word" : "Premier League Teams",
-        "words" : ["Bournemouth", "Brentford", "Brighton", "Burnley"]
+        "words" : ["bournemouth", "brentford", "brighton", "burnley"]
     }
 
     tutorgroup_not_in_ist = {
         "Linking_word" : "Tutor members not in IST",
-        "words" : ["Zak", "Oli", "Jackson", "Liam"]
+        "words" : ["zak", "oli", "jackson", "liam"]
     }
 
     recently_left_hutcho_staff = {
         "Linking_word" : "Hutcho staff that left",
-        "words" : ["Mokwa", "Bignold", "Macken", "Woolley"]
+        "words" : ["mokwa", "bignold", "macken", "woolley"]
     }
 
     yr10_game_bands = {
-        "Linking_word" : "Bands featured in Yr 10 game",
-        "words" : ["ABBA", "Dire Straits", "Carpenters", "Verve"]
+        "Linking_word" : "Bands featured in Cooper's Yr 10 game",
+        "words" : ["abba", "dire straits", "carpenters", "verve"]
     }
 
     brown_eyes = {
         "Linking_word" : "Brown Eyes",
-        "words" : ["Oliver", "Chris", "Jaden", "Nick"]
+        "words" : ["oliver", "chris", "jaden", "nick"]
     }
 
     names_in_gaelic = {
         "Linking_word" : "Gaelic Names",
-        "words" : ["Anndra", "Eubh", "Daidh", "Dughlas"]
+        "words" : ["anndra", "eubh", "daidh", "dughlas"]
+    }
+
+    blue_eyes = {
+        "Linking_word" : "Blue Eyes",
+        "words" : ["joshua", "lucas", "harrison", "zac"]
+    }
+
+    nicknames = {
+        "Linking_word" : "Class Nicknames",
+        "words" : ["fisher", "boss", "spinny", "d-mass"]
+    }
+
+    chris_pencilcase = {
+        "Linking_word" : "Objects in Chris' Pencilcase",
+        "words" : ["casio", "piss pen", "uhu stic", "stabilo"]
     }
 
 
@@ -41,5 +56,10 @@ def fong_word_categories():
     word_categories.append(yr10_game_bands)
     word_categories.append(brown_eyes)
     word_categories.append(names_in_gaelic)
+    word_categories.append(blue_eyes)
+    word_categories.append(nicknames)
+    word_categories.append(chris_pencilcase)
+
+
 
     return word_categories
