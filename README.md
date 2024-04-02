@@ -1,6 +1,6 @@
 <body>
 
-  ![marvin_beak1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/d7ecad06-aa52-4dcb-992e-645d8c34cdc8)
+  ![wide_eagling1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/f6399080-0007-4ca5-828e-03b55c338146)
 
 <h1>Connections Assessment</h1>
 
@@ -8,7 +8,8 @@
 
 <h2>About:</h2>
 
-<p>This game is based on the New York Times hit game, Connections, however, I've given it a spicy twist 🔥. This was created for my IST (Software Engineering) Assessment.</p>
+<p>This game is based on the New York Times hit game, Connections, however, I've given it a spicy twist 🔥.</p>
+<p> This was created for my IST (Software Engineering) Assessment.</p>
 
 <h2>Installation</h2>
 
@@ -31,6 +32,13 @@
     <li>Enter words seperated by a comma (no spaces unless the space is in the word)</li>
     <li>You have the options of 3 difficulties across 3 dictionaries, choose wisely!</li>
     <li>Have fun! (or else...)</li>
+</ol>
+
+<h2>DIFFICULTY</h2>
+<ol>
+    <li>Easy: Standard gameplay. 4 lives, easier categories, option to shuffle</li>
+    <li>Hard: Close to standard gameplay. 3 lives, harder categories, option to shuffle</li>
+    <li>Extreme: Pros only! 3 lives, harder categories, no shuffling</li>
 </ol>
 
 <h2>Contributing</h2>
