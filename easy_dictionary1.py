@@ -4,39 +4,46 @@ def easy_word_categories(): #holds the categories
     word_categories = [] #the following are the categories that will be in use
 
     country_homonyms = {
-        "Linking_word" : "Country Homonyms",
+        "Linking_word" : "country homonyms",
         "words" : ["grease", "hungry", "whales", "turkey"] #1
     }
 
     smelly = {
-        "Linking_word" : "Smelly",
+        "Linking_word" : "smelly",
         "words" : ["reek", "stench", "pong", "stink"]
     }
 
     alcohols = {
-        "Linking_word" : "Alcohols",
+        "Linking_word" : "alcohols",
         "words" : ["vodka", "beer", "rum", "champagne"]
     }
 
     nrl_teams = {
-        "Linking_word" : "NRL",
+        "Linking_word" : "nrl teams",
         "words" : ["knight", "cowboy", "panther", "bulldog"]
     }
 
     grains = {
-        "Linking_word" : "Grains",
+        "Linking_word" : "grains",
         "words" : ["wheat", "barley", "oat", "rice"]
     }
 
     sea = {
-        "Linking_word" : "Sea",
+        "Linking_word" : "sea",
         "words" : ["lion", "serpent", "eagle", "urchin"] 
     }
 
     green = {
-        "Linking_word" : "Green",
+        "Linking_word" : "green",
         "words" : ["grocer", "machine", "house", "screen"]
     }
+
+    tennis = {
+        "Linking_word" : "tennis",
+        "words" : ["ball", "raquet", "shoes", "net"]
+    }
+
+    
 
     #Appending
     word_categories.append(country_homonyms)
@@ -46,5 +53,6 @@ def easy_word_categories(): #holds the categories
     word_categories.append(grains)
     word_categories.append(sea)
     word_categories.append(green)
+    word_categories.append(tennis)
 
     return word_categories

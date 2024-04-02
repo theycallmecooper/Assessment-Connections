@@ -84,11 +84,13 @@ def guess_linking_word(selected_categories, max_guesses):
 
         found_category = False
         for category in selected_categories:
-            if set(guess_words) <= set(category['words']):  # Check if guessed words are a subset of category words
+            if len(guess_words) == 4 and set(guess_words) == set(category['words']):  # Check if guessed words are a subset of category words
                 found_category = True
                 typewriter(Fore.GREEN + f"The link for the category is: {category['Linking_word']}")
                 correct_guesses += 1
                 print(Fore.BLUE + f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
+            if len(guess_words) != 4:
+                ("YOU HAVE NOT PUT IN ENOUGH WORDS!")
 
         if not found_category:
             print(Fore.RED + "INCORRECT GUESS!!!")
@@ -97,7 +99,8 @@ def guess_linking_word(selected_categories, max_guesses):
             print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
             player_shuffle = input(Fore.BLUE + "You you want to shuffle? (y/n)").lower()
             if player_shuffle == 'y':
-                shuffle_categories(word_categories, 4)
+                typewriter(Fore.WHITE + "everyday i'm shuffling...")
+                shuffle_categories(selected_categories)
                 display_game(selected_categories, 4)
 
         if correct_guesses == len(selected_categories):
@@ -127,15 +130,11 @@ gameMode = input(Style.RESET_ALL + "Select game mode| EASY | HARD | EXTREME |:")
 if gameMode == "hard" or gameMode == "extreme":
     word_categories = hard_mode
     max_guesses = 3
+    
     if gameMode == "extreme":
         choice = input("Do you want hard categories or fong categories? | Hard | Fong |").lower()
         if choice == "fong":
             word_categories = fong_mode
-    if gameMode == "hard":
-        choice = input("Do you want hard categories or fong categories? | Hard | Fong |").lower()
-        if choice == "fong":
-            word_categories = fong_mode
-       
         def guess_linking_word(selected_categories, max_guesses):
             correct_guesses = 0  # nitialize the number of correct guesses
             guesses = 0  # Initialize the number of guesses
@@ -144,7 +143,7 @@ if gameMode == "hard" or gameMode == "extreme":
 
                 found_category = False
                 for category in selected_categories:
-                    if set(guess_words) <= set(category['words']):  # Check if guessed words are a subset of category words
+                    if len(guess_words) == 4 and set(guess_words) == set(category['words']):  # Check if guessed words are a subset of category words
                         found_category = True
                         typewriter(Fore.GREEN + f"Guess the link for the category: {', '.join(category['words'])}")
                         guess = input(Fore.GREEN + "Your guess: ").lower()
@@ -175,7 +174,8 @@ if gameMode == "hard" or gameMode == "extreme":
                 print(Fore.RED + "You ran out of guesses. YOU LOSE! ---- The correct linking words were:")
                 for category in selected_categories:
                     print(f"{category['Linking_word']} - {', '.join(category['words'])}")
-else:
+
+else: 
     word_categories = easy_mode
     max_guesses = 4
     choice = input("Do you want easy categories or fong categories? | Easy | Fong |").lower()

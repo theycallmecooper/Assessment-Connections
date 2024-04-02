@@ -4,47 +4,47 @@ def fong_word_categories():
     word_categories = []
 
     premier_league = {
-        "Linking_word" : "Premier League Teams",
+        "Linking_word" : "premier league teams",
         "words" : ["bournemouth", "brentford", "brighton", "burnley"]
     }
 
     tutorgroup_not_in_ist = {
-        "Linking_word" : "Tutor members not in IST",
+        "Linking_word" : "tutor members not in ist",
         "words" : ["zak", "oli", "jackson", "liam"]
     }
 
     recently_left_hutcho_staff = {
-        "Linking_word" : "Hutcho staff that left",
+        "Linking_word" : "hutcho staff that left",
         "words" : ["mokwa", "bignold", "macken", "woolley"]
     }
 
     yr10_game_bands = {
-        "Linking_word" : "Bands featured in Cooper's Yr 10 game",
+        "Linking_word" : "bands featured in cooper's yr 10 game",
         "words" : ["abba", "dire straits", "carpenters", "verve"]
     }
 
     brown_eyes = {
-        "Linking_word" : "Brown Eyes",
+        "Linking_word" : "brown eyes",
         "words" : ["oliver", "chris", "jaden", "nick"]
     }
 
     names_in_gaelic = {
-        "Linking_word" : "Gaelic Names",
+        "Linking_word" : "gaelic names",
         "words" : ["anndra", "eubh", "daidh", "dughlas"]
     }
 
     blue_eyes = {
-        "Linking_word" : "Blue Eyes",
+        "Linking_word" : "blue eyes",
         "words" : ["joshua", "lucas", "harrison", "zac"]
     }
 
     nicknames = {
-        "Linking_word" : "Class Nicknames",
+        "Linking_word" : "class nicknames",
         "words" : ["fisher", "boss", "spinny", "d-mass"]
     }
 
     chris_pencilcase = {
-        "Linking_word" : "Objects in Chris' Pencilcase",
+        "Linking_word" : "objects in chris' pencilcase",
         "words" : ["casio", "piss pen", "uhu stic", "stabilo"]
     }
 

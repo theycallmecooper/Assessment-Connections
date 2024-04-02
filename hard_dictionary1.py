@@ -4,34 +4,39 @@ def hard_word_categories(): #holds the categories
     word_categories = [] #the following are the categories that will be in use
 
     water = {
-        "Linking_word" : "Water",
+        "Linking_word" : "water",
         "words" : ["water", "h2o", "aqua", "adams ale"] 
     }
 
     hand_digits = {
-        "Linking_word" : "Hand Digits",
+        "Linking_word" : "hand digits",
         "words" : ["index", "middle", "thumb", "pinky"] 
     }
 
     bbl_teams = {
-        "Linking_word" : "BBL",
+        "Linking_word" : "bbl teams",
         "words" : ["renegade", "striker", "thunder", "hurricane"]
     }
 
     paleozoic = {
-        "Linking_word" : "Paleozoic",
+        "Linking_word" : "paleozoic",
         "words" : ["permian", "ordocician", "devonian", "cambrian"]
     }
 
     tertiary = {
-        "Linking_word" : "Tertiary",
+        "Linking_word" : "tertiary",
         "words" : ["eocene", "oligocene", "miocene", "pliocene"]
     }
 
     peninsula = {
-        "Linking_word" : "Peninsula",
+        "Linking_word" : "peninsula",
         "words" : ["arabian", "balkan", "iberian", "italian"]
     }
+
+    minor_bodies = {
+    "Linking_word": "minor bodies",
+    "words": ["dwarf planet", "asteroid", "moon", "comet"]
+}
 
     #Appending
     word_categories.append(water)
@@ -40,5 +45,6 @@ def hard_word_categories(): #holds the categories
     word_categories.append(paleozoic)
     word_categories.append(tertiary)
     word_categories.append(peninsula)
+    word_categories.append(minor_bodies)
 
     return word_categories
