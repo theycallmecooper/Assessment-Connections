@@ -146,13 +146,14 @@ intro(Fore.MAGENTA + """ ██████╗ ██████╗ ███�
 print("        \U0001F642")
 gameMode = input(Style.RESET_ALL + "Select game mode| EASY | HARD | EXTREME |:").lower()
 if gameMode == "hard" or gameMode == "extreme":
-    word_categories = hard_mode
     max_guesses = 3
+    choice = input("Do you want hard categories or fong categories? | Hard | Fong |").lower()
+    if choice == "fong":
+         word_categories = fong_mode
+    else:
+         word_categories = hard_mode
     
     if gameMode == "extreme":
-        choice = input("Do you want hard categories or fong categories? | Hard | Fong |").lower()
-        if choice == "fong":
-            word_categories = fong_mode
         def guess_linking_word(selected_categories, max_guesses):
             correct_guesses = 0  # nitialize the number of correct guesses
             guesses = 0  # Initialize the number of guesses
