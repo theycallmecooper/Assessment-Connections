@@ -18,6 +18,12 @@ def typewriter(words):
             sleep(0.058)
         print()
 
+def intro(words):
+        for char in words:
+            print(char, end='', flush=True) #Typewriter effect
+            sleep(0.0048)
+        print()
+
 # add gap between cells
 def gap():
         print(  
@@ -34,6 +40,7 @@ def print_words_from_catagories(word_categories):
 def create_grid():
     grid_size = 4
     word_grid = []
+    random.shuffle(word_grid)
 
     for _ in range(grid_size):
         row = []
@@ -78,6 +85,7 @@ def display_game(word_categories, grid_size):
 def guess_linking_word(selected_categories, max_guesses):
     correct_guesses = 0  # Initialise the number of correct guesses
     guesses = 0  # the initial number of guesses
+    guessed_categories = []  # Initialize list to store guessed categories
 
     while guesses < max_guesses:
         guess_words = input(Fore.YELLOW + "Guess 4 connected words from any category separated by commas: ").lower().split(',')
@@ -85,30 +93,34 @@ def guess_linking_word(selected_categories, max_guesses):
         found_category = False
         for category in selected_categories:
             if len(guess_words) == 4 and set(guess_words) == set(category['words']):  # Check if guessed words are a subset of category words
+                if category in guessed_categories:
+                    print(Fore.RED + "You've already guessed this category. Try again!")
+                    break  # Skip to the next iteration of the loop
                 found_category = True
+                guessed_categories.append(category)  # Add guessed category to the list
                 typewriter(Fore.GREEN + f"The link for the category is: {category['Linking_word']}")
                 correct_guesses += 1
-                print(Fore.BLUE + f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
-            if len(guess_words) != 4:
-                ("YOU HAVE NOT PUT IN ENOUGH WORDS!")
+                print(Fore.GREEN + "Correct! You connected!")
+                if correct_guesses == len(selected_categories):
+                    print(Fore.GREEN + "Congratulations! You guessed all linking words correctly. YOU WIN!")
+                    if guesses == max_guesses - 1:
+                        typewriter(Fore.MAGENTA + Style.BRIGHT +"Pheww... That was close!")
+                    return True
+                else:
+                    print(Fore.BLUE + f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
+                break
+            else:
+                print(Fore.RED + "Incorrect guess!")
+                guesses += 1
+                remaining_guesses = max_guesses - guesses
+                print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
 
         if not found_category:
             print(Fore.RED + "INCORRECT GUESS!!!")
             guesses += 1
             remaining_guesses = max_guesses - guesses
             print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
-            player_shuffle = input(Fore.BLUE + "You you want to shuffle? (y/n)").lower()
-            if player_shuffle == 'y':
-                typewriter(Fore.WHITE + "everyday i'm shuffling...")
-                shuffle_categories(selected_categories)
-                display_game(selected_categories, 4)
 
-        if correct_guesses == len(selected_categories):
-            print(Fore.GREEN + Style.BRIGHT + "Congratulations! You guessed all linking words correctly. YOU WIN!")
-            if guesses == max_guesses - 1:
-                typewriter(Fore.MAGENTA + Style.BRIGHT +"Pheww... That was close!")
-            return True
-    
     if guesses == max_guesses:
         print(Fore.RED + "You ran out of guesses. YOU LOSE! ---- The correct linking words were:")
         for category in selected_categories:
@@ -124,7 +136,14 @@ fong_mode = fong_word_categories()  #Extreme mode: Harder categories, no shuffli
                                     #Fong mode: Connections closer related to the life of Andraa
 word_categories = ""
 
-typewriter(Style.BRIGHT + Fore.GREEN + "WELCOME " + Style.BRIGHT + Fore.MAGENTA + "TO " + Style.BRIGHT + Fore.YELLOW + "CONNECTIONS")
+typewriter(Style.BRIGHT + Fore.GREEN + "WELCOME TO:")
+intro(Fore.MAGENTA + """ ██████╗ ██████╗ ███╗   ██╗███╗   ██╗███████╗ ██████╗████████╗██╗ ██████╗ ███╗   ██╗███████╗
+██╔════╝██╔═══██╗████╗  ██║████╗  ██║██╔════╝██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║██╔════╝
+██║     ██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██║        ██║   ██║██║   ██║██╔██╗ ██║███████╗
+██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║   ██║██║   ██║██║╚██╗██║╚════██║
+╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║███████║
+ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝""")
+                                                                                            
 print("        \U0001F642")
 gameMode = input(Style.RESET_ALL + "Select game mode| EASY | HARD | EXTREME |:").lower()
 if gameMode == "hard" or gameMode == "extreme":
@@ -138,42 +157,48 @@ if gameMode == "hard" or gameMode == "extreme":
         def guess_linking_word(selected_categories, max_guesses):
             correct_guesses = 0  # nitialize the number of correct guesses
             guesses = 0  # Initialize the number of guesses
+            guessed_categories = []
+
             while guesses < max_guesses:
                 guess_words = input(Fore.YELLOW + "Guess 4 connected words from any category separated by commas: ").lower().split(',')
 
                 found_category = False
                 for category in selected_categories:
                     if len(guess_words) == 4 and set(guess_words) == set(category['words']):  # Check if guessed words are a subset of category words
-                        found_category = True
-                        typewriter(Fore.GREEN + f"Guess the link for the category: {', '.join(category['words'])}")
-                        guess = input(Fore.GREEN + "Your guess: ").lower()
-                        if guess.lower() == category['Linking_word'].lower():
-                            print(Fore.GREEN + "Correct! You connected!")
-                            correct_guesses += 1
-                            if correct_guesses == len(selected_categories):
-                                print(Fore.GREEN + "Congratulations! You guessed all linking words correctly. YOU WIN!")
-                                if guesses == max_guesses - 1:
-                                    typewriter(Fore.MAGENTA + Style.BRIGHT +"Pheww... That was close!")
-                                return True
-                            else:
-                                print(Fore.BLUE + f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
-                            break
-                        else:
-                            print(Fore.RED + "Incorrect guess!")
-                            guesses += 1
-                            remaining_guesses = max_guesses - guesses
-                            print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
-
-                if not found_category:
-                    print(Fore.RED + "INCORRECT GUESS!!!")
+                                        found_category = True
+                guessed_categories.append(category)  # Add guessed category to the list
+                typewriter(Fore.GREEN + f"Guess the link for the category: {', '.join(category['words'])}")
+                guess = input(Fore.GREEN + "Your guess: ").lower()
+                if guess.lower() == category['Linking_word'].lower():
+                    print(Fore.GREEN + "Correct! You connected!")
+                    correct_guesses += 1
+                    if correct_guesses == len(selected_categories):
+                        print(Fore.GREEN + "Congratulations! You guessed all linking words correctly. YOU WIN!")
+                        if guesses == max_guesses - 1:
+                            typewriter(Fore.MAGENTA + Style.BRIGHT +"Pheww... That was close!")
+                        return True
+                    else:
+                        print(Fore.BLUE + f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
+                    break
+                else:
+                    print(Fore.RED + "Incorrect guess!")
                     guesses += 1
                     remaining_guesses = max_guesses - guesses
                     print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
+
+            if not found_category:
+                print(Fore.RED + "INCORRECT GUESS!!!")
+                guesses += 1
+                remaining_guesses = max_guesses - guesses
+                print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
 
             if guesses == max_guesses:
                 print(Fore.RED + "You ran out of guesses. YOU LOSE! ---- The correct linking words were:")
                 for category in selected_categories:
                     print(f"{category['Linking_word']} - {', '.join(category['words'])}")
+
+            return False
+
 
 else: 
     word_categories = easy_mode
