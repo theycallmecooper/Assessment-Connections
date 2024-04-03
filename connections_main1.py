@@ -114,6 +114,11 @@ def guess_linking_word(selected_categories, max_guesses):
             guesses += 1
             remaining_guesses = max_guesses - guesses
             print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
+            player_shuffle = input(Fore.BLUE + "You you want to shuffle? (y/n)")
+            if player_shuffle == 'y':
+                typewriter(Fore.WHITE + "every day i'm shuffling...")
+                shuffle_categories(selected_categories)
+                display_game(selected_categories, 4)
 
     if guesses == max_guesses:
         print(Fore.RED + "You ran out of guesses. YOU LOSE! ---- The correct linking words were:")

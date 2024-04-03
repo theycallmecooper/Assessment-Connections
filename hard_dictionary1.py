@@ -37,6 +37,11 @@ def hard_word_categories(): #holds the categories
     "Linking_word": "minor bodies",
     "words": ["dwarf planet", "asteroid", "moon", "comet"]
 }
+    
+    beginnings_states = {
+    "Linking_word": "start of state names",
+    "words": ["new", "south", "queen", "victor"]
+}
 
     #Appending
     word_categories.append(water)
@@ -46,5 +51,6 @@ def hard_word_categories(): #holds the categories
     word_categories.append(tertiary)
     word_categories.append(peninsula)
     word_categories.append(minor_bodies)
+    word_categories.append(beginnings_states)
 
     return word_categories
