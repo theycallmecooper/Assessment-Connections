@@ -109,12 +109,6 @@ def guess_linking_word(selected_categories, max_guesses):
                 else:
                     print(Fore.BLUE + f"You've connected {correct_guesses} out of {len(selected_categories)} categories.")
                 break
-            else:
-                print(Fore.RED + "Incorrect guess!")
-                guesses += 1
-                remaining_guesses = max_guesses - guesses
-                print(Fore.MAGENTA + f"You have {remaining_guesses} guesses remaining.")
-
         if not found_category:
             print(Fore.RED + "INCORRECT GUESS!!!")
             guesses += 1
