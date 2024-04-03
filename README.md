@@ -1,10 +1,10 @@
 <body>
 
-  ![wide_eagling1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/f6399080-0007-4ca5-828e-03b55c338146)
+ ![connections1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/ebdd4d72-13e7-4311-bf3c-804170e07a08)
 
 <h1>Connections Assessment</h1>
 
-<p>Welcome to Connections! This README provides information about my project.</p>
+<p>Welcome to Connections (but better)!</p>
 
 <h2>About:</h2>
 
@@ -41,6 +41,17 @@
     <li>Extreme: Pros only! 3 lives, harder categories, no shuffling</li>
 </ol>
 
+<h2>ENTERING ANSWERS</h2>
+<p>When entering your 4 words to guess, ensure that you seperate with a comma</p>
+<p>but no spaces between the words unless the word contains a space in itself</p>
+
+![stuff1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/f26dc8a4-1855-4a11-bfc6-4e918ff7db58)
+
+<h2>SHUFFLING</h2>
+<p>If you get a category wrong on easy or hard mode, you have the option to shuffle the grid!</p>
+
+![shuffle1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/257482ab-8673-489b-917c-2e5ac98a64db)
+
 <h2>Contributing</h2>
 
 <p>Feel free to recommend categories or features to add 🙌</p>
@@ -57,6 +68,8 @@
 <h2>License</h2>
 
 <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for details.</p>
+
+![wide_eagling1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/8b972b40-6ad9-42cf-ad15-dd217b82dffb)
 
 </body>
 </html>
