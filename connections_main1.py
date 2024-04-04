@@ -95,6 +95,7 @@ def guess_linking_word(selected_categories, max_guesses):
             if len(guess_words) == 4 and set(guess_words) == set(category['words']):  # Check if guessed words are a subset of category words
                 if category in guessed_categories:
                     print(Fore.RED + "You've already guessed this category. Try again!")
+                    guesses -= 1
                     break  # Skip to the next iteration of the loop
                 found_category = True
                 guessed_categories.append(category)  # Add guessed category to the list
