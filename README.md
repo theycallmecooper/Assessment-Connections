@@ -1,10 +1,13 @@
 <body>
 
- ![connections1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/ebdd4d72-13e7-4311-bf3c-804170e07a08)
+ ![cutie2](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/f0627361-ac54-409c-aa39-5df8ea38cd9a)
 
 <h1>Connections Assessment</h1>
 
+![connections1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/76ab2271-8987-429c-b6d3-f97c31967cc6)
+
 <p>Welcome to Connections (but better)!</p>
+
 
 <h2>About:</h2>
 
@@ -46,7 +49,7 @@
 <p>but no spaces between the words unless the word contains a space in itself</p>
 
 ![stuff1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/f26dc8a4-1855-4a11-bfc6-4e918ff7db58)
-
+<p>TIP: Enter it as shown in image :)</p>
 <h2>SHUFFLING</h2>
 <p>If you get a category wrong on easy or hard mode, you have the option to shuffle the grid!</p>
 
@@ -55,15 +58,6 @@
 <h2>Contributing</h2>
 
 <p>Feel free to recommend categories or features to add 🙌</p>
-
-<ol>
-    <li>Fork the repository on GitHub.</li>
-    <li>Clone your forked repository to your local machine.</li>
-    <li>Create a new branch for your feature or bug fix.</li>
-    <li>Make your changes and commit them with descriptive messages.</li>
-    <li>Push your changes to your fork on GitHub.</li>
-    <li>Submit a pull request to the main repository.</li>
-</ol>
 
 <h2>License</h2>
 
