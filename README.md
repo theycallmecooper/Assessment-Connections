@@ -13,6 +13,7 @@
 
 <p>This game is based on the New York Times hit game, Connections, however, I've given it a spicy twist 🔥.</p>
 <p> This was created for my IST (Software Engineering) Assessment.</p>
+<p>FEATURES AROUND 25 CATEGORIES AT THE CURRENT TIME!!!</p>
 
 <h2>Installation</h2>
 
@@ -65,5 +66,6 @@
 
 ![wide_eagling1](https://github.com/theycallmecooper/Assessment-Connections/assets/150302388/8b972b40-6ad9-42cf-ad15-dd217b82dffb)
 
+<p>💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜</p>
 </body>
 </html>
